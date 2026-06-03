@@ -64,6 +64,7 @@
       ['TDD', 'Clean Arch'], ['TDD', 'CI/CD'], ['CI/CD', 'DevOps'],
       ['DevOps', 'AWS'], ['DevOps', 'Azure'], ['SDD', 'TDD'],
       ['Claude', 'Code review'], ['Claude', 'Agentes'], ['Agentes', 'RAG'],
+      ['SDD', 'Claude'],
       ['RAG', 'Databricks'], ['AWS', 'Databricks'], ['Azure', 'Databricks'],
       // arquitetura
       ['Microserviços', 'CQRS'], ['Microserviços', 'Serverless'],
