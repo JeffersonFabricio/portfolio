@@ -13,6 +13,7 @@
     // ---- paleta por categoria (combina com o tema do template) ----
     var CAT = {
       tech:     { label: 'Tecnologias',          color: '#18d26e' },
+      arch:     { label: 'Arquitetura',          color: '#1bb3c4' },
       design:   { label: 'Princípios de design', color: '#4d8dff' },
       practice: { label: 'Práticas',             color: '#b98bff' },
       ai:       { label: 'IA',                   color: '#ffb454' }
@@ -22,23 +23,29 @@
     var nodes = [
       // categorias
       { id: 'tech', cat: 'tech', kind: 'cat' },
+      { id: 'arch', cat: 'arch', kind: 'cat' },
       { id: 'design', cat: 'design', kind: 'cat' },
       { id: 'practice', cat: 'practice', kind: 'cat' },
       { id: 'ai', cat: 'ai', kind: 'cat' },
       // tecnologias
       { id: 'Java', cat: 'tech' }, { id: 'Spring', cat: 'tech' },
       { id: 'Angular', cat: 'tech' }, { id: 'Flutter', cat: 'tech' },
-      { id: 'Node.js', cat: 'tech' }, { id: 'TypeScript', cat: 'tech' },
+      { id: 'Node', cat: 'tech' }, { id: 'TypeScript', cat: 'tech' },
       { id: 'SQL', cat: 'tech' }, { id: 'AWS', cat: 'tech' },
       { id: 'Azure', cat: 'tech' }, { id: 'Databricks', cat: 'tech' },
+      { id: 'Bedrock', cat: 'tech' },
+      // arquitetura & padrões
+      { id: 'Microserviços', cat: 'arch' }, { id: 'CQRS', cat: 'arch' },
+      { id: 'Vertical Slice', cat: 'arch' }, { id: 'MVC', cat: 'arch' },
+      { id: 'Serverless', cat: 'arch' }, { id: 'Webhook', cat: 'arch' },
+      { id: 'Clean Arch', cat: 'arch' },
       // princípios
       { id: 'SOLID', cat: 'design' }, { id: 'DRY', cat: 'design' },
       { id: 'KISS', cat: 'design' }, { id: 'YAGNI', cat: 'design' },
-      { id: 'Clean Arch', cat: 'design' },
       // práticas
       { id: 'TDD', cat: 'practice' }, { id: 'SDD', cat: 'practice' },
       { id: 'CI/CD', cat: 'practice' }, { id: 'DevOps', cat: 'practice' },
-      { id: 'Code review', cat: 'practice' },
+      { id: 'Code review', cat: 'practice' }, { id: 'Negócio', cat: 'practice' },
       // IA
       { id: 'Claude', cat: 'ai' }, { id: 'Agentes', cat: 'ai' },
       { id: 'RAG', cat: 'ai' }
@@ -52,12 +59,19 @@
     // ---- arestas extras: relações reais entre skills ----
     var rel = [
       ['Java', 'Spring'], ['Spring', 'Clean Arch'], ['Angular', 'TypeScript'],
-      ['Node.js', 'TypeScript'], ['Flutter', 'Clean Arch'],
+      ['Node', 'TypeScript'], ['Flutter', 'Clean Arch'],
       ['SOLID', 'Clean Arch'], ['SOLID', 'DRY'], ['DRY', 'KISS'], ['KISS', 'YAGNI'],
       ['TDD', 'Clean Arch'], ['TDD', 'CI/CD'], ['CI/CD', 'DevOps'],
       ['DevOps', 'AWS'], ['DevOps', 'Azure'], ['SDD', 'TDD'],
       ['Claude', 'Code review'], ['Claude', 'Agentes'], ['Agentes', 'RAG'],
-      ['RAG', 'Databricks'], ['AWS', 'Databricks'], ['Azure', 'Databricks']
+      ['RAG', 'Databricks'], ['AWS', 'Databricks'], ['Azure', 'Databricks'],
+      // arquitetura
+      ['Microserviços', 'CQRS'], ['Microserviços', 'Serverless'],
+      ['Microserviços', 'Webhook'], ['CQRS', 'Clean Arch'],
+      ['Vertical Slice', 'Clean Arch'], ['MVC', 'Clean Arch'],
+      ['Serverless', 'AWS'], ['Serverless', 'Azure'], ['Bedrock', 'AWS'],
+      ['Bedrock', 'Agentes'], ['Microserviços', 'Spring'],
+      ['Negócio', 'CQRS'], ['Negócio', 'Code review']
     ];
     rel.forEach(function (r) { links.push({ source: r[0], target: r[1], kind: 'rel' }); });
 
@@ -71,7 +85,7 @@
 
     // ---- dimensões ----
     var W = host.clientWidth || 720;
-    var H = Math.max(440, Math.min(560, W * 0.66));
+    var H = Math.max(520, Math.min(640, W * 0.74));
 
     var svg = d3.select(host).append('svg')
       .attr('width', '100%').attr('height', H)
@@ -112,7 +126,7 @@
       .force('link', d3.forceLink(links).id(function (d) { return d.id; })
         .distance(function (d) { return d.kind === 'cluster' ? 70 : 110; })
         .strength(function (d) { return d.kind === 'cluster' ? 0.85 : 0.08; }))
-      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'cat' ? -780 : -300; }))
+      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'cat' ? -1000 : -360; }))
       .force('center', d3.forceCenter(W / 2, H / 2))
       .force('collide', d3.forceCollide().radius(function (d) { return d.kind === 'cat' ? 42 : 30; }).strength(0.9))
       .on('tick', tick);
