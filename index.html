@@ -131,115 +131,14 @@
         <style>
           .skill-graph-wrap { background: #fff; border: 1px solid #e4e8ec; border-radius: 14px; padding: 8px 12px 4px; margin-bottom: 30px; box-shadow: 0 10px 30px -18px rgba(5,13,24,.25); position: relative; }
           .skill-graph-wrap .sgw-hint { position: absolute; top: 12px; right: 16px; font-family: 'Courier New', monospace; font-size: 11px; color: #aab4bd; pointer-events: none; }
-          #skill-graph { width: 100%; min-height: 520px; }
+          #skill-graph { width: 100%; min-height: 540px; }
           #skill-graph svg text { user-select: none; }
-          .skillset { display: flex; flex-direction: column; gap: 28px; }
-          .skill-group .sg-head { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; }
-          .skill-group .sg-head .sg-dot { width: 9px; height: 9px; border-radius: 50%; background: #18d26e; box-shadow: 0 0 10px #18d26e; animation: sg-pulse 2.2s infinite; }
-          @keyframes sg-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
-          .skill-group .sg-head h4 { margin: 0; font-size: 16px; font-weight: 700; color: #050d18; }
-          .skill-group .sg-head .sg-meta { font-family: 'Courier New', monospace; font-size: 12px; color: #8a96a3; margin-left: auto; }
-          .chipset { display: flex; flex-wrap: wrap; gap: 10px; }
-          .skill-chip {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 8px 14px; border-radius: 999px;
-            background: #fff; border: 1px solid #e4e8ec;
-            font-size: 14px; color: #45505b; font-weight: 500;
-            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-          }
-          .skill-chip:hover { transform: translateY(-2px); border-color: #18d26e; box-shadow: 0 6px 18px -8px rgba(24,210,110,.5); }
-          .skill-chip .lvl { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: #18d26e; }
         </style>
 
         <!-- grafo de conhecimento (estilo Obsidian) -->
         <div class="skill-graph-wrap" data-aos="fade-up">
           <span class="sgw-hint">arraste os nós · passe o mouse para destacar</span>
           <div id="skill-graph"></div>
-        </div>
-
-        <div class="skillset">
-
-          <div class="skill-group" data-aos="fade-up">
-            <div class="sg-head">
-              <span class="sg-dot"></span>
-              <h4>Tecnologias</h4>
-              <span class="sg-meta">// stack principal</span>
-            </div>
-            <div class="chipset">
-              <span class="skill-chip"><i class="lvl"></i> Java</span>
-              <span class="skill-chip"><i class="lvl"></i> Spring</span>
-              <span class="skill-chip"><i class="lvl"></i> Angular</span>
-              <span class="skill-chip"><i class="lvl"></i> Flutter</span>
-              <span class="skill-chip"><i class="lvl"></i> Node</span>
-              <span class="skill-chip"><i class="lvl"></i> TypeScript</span>
-              <span class="skill-chip"><i class="lvl"></i> SQL / Oracle</span>
-              <span class="skill-chip"><i class="lvl"></i> Databricks</span>
-            </div>
-          </div>
-
-          <div class="skill-group" data-aos="fade-up" data-aos-delay="100">
-            <div class="sg-head">
-              <span class="sg-dot"></span>
-              <h4>Cloud</h4>
-              <span class="sg-meta">// onde tudo roda</span>
-            </div>
-            <div class="chipset">
-              <span class="skill-chip"><i class="lvl"></i> AWS</span>
-              <span class="skill-chip"><i class="lvl"></i> Azure</span>
-              <span class="skill-chip"><i class="lvl"></i> AWS Bedrock</span>
-            </div>
-          </div>
-
-          <div class="skill-group" data-aos="fade-up" data-aos-delay="150">
-            <div class="sg-head">
-              <span class="sg-dot"></span>
-              <h4>Arquitetura &amp; padrões</h4>
-              <span class="sg-meta">// como eu estruturo o sistema</span>
-            </div>
-            <div class="chipset">
-              <span class="skill-chip"><i class="lvl"></i> Microserviços</span>
-              <span class="skill-chip"><i class="lvl"></i> CQRS</span>
-              <span class="skill-chip"><i class="lvl"></i> Vertical Slice</span>
-              <span class="skill-chip"><i class="lvl"></i> MVC</span>
-              <span class="skill-chip"><i class="lvl"></i> Serverless</span>
-              <span class="skill-chip"><i class="lvl"></i> Webhook</span>
-              <span class="skill-chip"><i class="lvl"></i> Clean Architecture</span>
-            </div>
-          </div>
-
-          <div class="skill-group" data-aos="fade-up" data-aos-delay="200">
-            <div class="sg-head">
-              <span class="sg-dot"></span>
-              <h4>Princípios de design</h4>
-              <span class="sg-meta">// como eu mantenho o código são</span>
-            </div>
-            <div class="chipset">
-              <span class="skill-chip"><i class="lvl"></i> SOLID</span>
-              <span class="skill-chip"><i class="lvl"></i> DRY</span>
-              <span class="skill-chip"><i class="lvl"></i> KISS</span>
-              <span class="skill-chip"><i class="lvl"></i> YAGNI</span>
-              <span class="skill-chip"><i class="lvl"></i> TDD</span>
-            </div>
-          </div>
-
-          <div class="skill-group" data-aos="fade-up" data-aos-delay="300">
-            <div class="sg-head">
-              <span class="sg-dot"></span>
-              <h4>Práticas &amp; IA</h4>
-              <span class="sg-meta">// o que acelera o time</span>
-            </div>
-            <div class="chipset">
-              <span class="skill-chip"><i class="lvl"></i> Claude / Claude Code</span>
-              <span class="skill-chip"><i class="lvl"></i> IA aplicada / agentes</span>
-              <span class="skill-chip"><i class="lvl"></i> Spec-Driven Development</span>
-              <span class="skill-chip"><i class="lvl"></i> Code review</span>
-              <span class="skill-chip"><i class="lvl"></i> Pair programming</span>
-              <span class="skill-chip"><i class="lvl"></i> CI/CD</span>
-              <span class="skill-chip"><i class="lvl"></i> DevOps</span>
-              <span class="skill-chip"><i class="lvl"></i> Entendimento de negócio</span>
-            </div>
-          </div>
-
         </div>
 
       </div>

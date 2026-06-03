@@ -49,6 +49,7 @@
       { id: 'TDD', cat: 'practice' }, { id: 'SDD', cat: 'practice' },
       { id: 'CI/CD', cat: 'practice' }, { id: 'DevOps', cat: 'practice' },
       { id: 'Code review', cat: 'practice' }, { id: 'Negócio', cat: 'practice' },
+      { id: 'Pair prog.', cat: 'practice' }, { id: 'Mentoria', cat: 'practice' },
       // IA
       { id: 'Claude', cat: 'ai' }, { id: 'Agentes', cat: 'ai' },
       { id: 'RAG', cat: 'ai' }
@@ -75,7 +76,8 @@
       ['Vertical Slice', 'Clean Arch'], ['MVC', 'Clean Arch'],
       ['Serverless', 'AWS'], ['Serverless', 'Azure'], ['Bedrock', 'AWS'],
       ['Bedrock', 'Agentes'], ['Microserviços', 'Spring'],
-      ['Negócio', 'CQRS'], ['Negócio', 'Code review']
+      ['Negócio', 'CQRS'], ['Negócio', 'Code review'],
+      ['Mentoria', 'Pair prog.'], ['Mentoria', 'Code review'], ['Pair prog.', 'TDD']
     ];
     rel.forEach(function (r) { links.push({ source: r[0], target: r[1], kind: 'rel' }); });
 
@@ -126,13 +128,28 @@
       .attr('fill', function (d) { return d.kind === 'cat' ? CAT[d.cat].color : '#45505b'; });
 
     // ---- força ----
+    // âncoras: distribui os clusters num anel ao redor do centro, bem espalhados
+    var catKeys = Object.keys(CAT);
+    var anchors = {};
+    function computeAnchors() {
+      var cx = W / 2, cy = H / 2;
+      var rx = W * 0.36, ry = H * 0.34; // raio do anel (elíptico p/ aproveitar a largura)
+      catKeys.forEach(function (k, i) {
+        var a = (i / catKeys.length) * 2 * Math.PI - Math.PI / 2; // começa no topo
+        anchors[k] = { x: cx + rx * Math.cos(a), y: cy + ry * Math.sin(a) };
+      });
+    }
+    computeAnchors();
+
     var sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(function (d) { return d.id; })
-        .distance(function (d) { return d.kind === 'cluster' ? 70 : 110; })
-        .strength(function (d) { return d.kind === 'cluster' ? 0.85 : 0.08; }))
-      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'cat' ? -1000 : -360; }))
-      .force('center', d3.forceCenter(W / 2, H / 2))
-      .force('collide', d3.forceCollide().radius(function (d) { return d.kind === 'cat' ? 42 : 30; }).strength(0.9))
+        .distance(function (d) { return d.kind === 'cluster' ? 46 : 80; })
+        .strength(function (d) { return d.kind === 'cluster' ? 0.6 : 0.05; }))
+      .force('charge', d3.forceManyBody().strength(function (d) { return d.kind === 'cat' ? -260 : -150; }))
+      // puxa cada nó para a âncora da sua categoria → clusters espalhados, nada colado no canto
+      .force('x', d3.forceX(function (d) { return anchors[d.cat].x; }).strength(function (d) { return d.kind === 'cat' ? 0.55 : 0.32; }))
+      .force('y', d3.forceY(function (d) { return anchors[d.cat].y; }).strength(function (d) { return d.kind === 'cat' ? 0.55 : 0.32; }))
+      .force('collide', d3.forceCollide().radius(function (d) { return d.kind === 'cat' ? 40 : 26; }).strength(0.9))
       .on('tick', tick);
 
     function tick() {
@@ -173,14 +190,15 @@
       d.fx = null; d.fy = null; svg.style('cursor', 'grab');
     }
 
-    // re-centra em resize
+    // recalcula âncoras/viewBox em resize
     var ro = new ResizeObserver(function () {
       var nw = host.clientWidth || W;
       if (Math.abs(nw - W) < 8) return;
       W = nw;
-      svg.attr('viewBox', '0 0 ' + W + ' ' + H);
-      sim.force('center', d3.forceCenter(W / 2, H / 2));
-      sim.alpha(0.3).restart();
+      H = Math.max(520, Math.min(640, W * 0.74));
+      svg.attr('height', H).attr('viewBox', '0 0 ' + W + ' ' + H);
+      computeAnchors();
+      sim.alpha(0.4).restart();
     });
     ro.observe(host);
   }
