@@ -52,8 +52,10 @@
       { id: 'SOLID', cat: 'design' }, { id: 'DRY', cat: 'design' },
       { id: 'KISS', cat: 'design' }, { id: 'YAGNI', cat: 'design' },
       // testes
-      { id: 'Unitários', cat: 'testes' }, { id: 'Postman', cat: 'testes' },
-      { id: 'E2E', cat: 'testes' }, { id: 'Playwright', cat: 'testes' },
+      { id: 'Unitários', cat: 'testes' }, { id: 'Integração', cat: 'testes' },
+      { id: 'Postman', cat: 'testes' }, { id: 'E2E', cat: 'testes' },
+      { id: 'Playwright', cat: 'testes' }, { id: 'Bancada', cat: 'testes' },
+      { id: 'Carga', cat: 'testes' },
       // segurança
       { id: 'SAST', cat: 'security' }, { id: 'DAST', cat: 'security' },
       { id: 'OWASP Top 10', cat: 'security' },
@@ -99,6 +101,9 @@
       // testes
       ['Unitários', 'TDD'], ['Unitários', 'CI/CD'], ['E2E', 'Playwright'],
       ['E2E', 'CI/CD'], ['Postman', 'Webhook'], ['Playwright', 'Angular'],
+      ['Integração', 'Unitários'], ['Integração', 'Microserviços'],
+      ['Postman', 'Integração'], ['Bancada', 'Integração'],
+      ['Carga', 'DevOps'], ['Carga', 'E2E'],
       // segurança
       ['SAST', 'CI/CD'], ['DAST', 'CI/CD'], ['SAST', 'OWASP Top 10'],
       ['DAST', 'OWASP Top 10'], ['OWASP Top 10', 'Code review'], ['DAST', 'E2E'],
