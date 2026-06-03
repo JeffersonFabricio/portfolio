@@ -47,10 +47,11 @@
         <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Jefferson Fabrício</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="https://twitter.com/_Javeiro" class="twitter | X" target="_blank"><i class="bx bxl-twitter"></i></a>
+          <a href="https://x.com/ArchCodeAI" class="twitter | X" target="_blank"><i class="bx bxl-twitter"></i></a>
           <a href="https://www.instagram.com/jeffersfabricio/" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
           <a href="https://medium.com/@jeffersonfabriciodev" class="google-plus" target="_blank"><i class="bx bxl-medium"></i></a>
           <a href="https://www.linkedin.com/in/jefferson-fabricio/" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://www.npmjs.com/~jeffersonfabricio" class="npm" target="_blank"><i class="bx bx-package"></i></a>
         </div>
       </div>
 
@@ -124,87 +125,94 @@
 
         <div class="section-title">
           <h2>Skills</h2>
-          <p>Tecnologias aos quais eu tenho maior conhecimento e expertise</p>
+          <p>Ferramentas, princípios e práticas que uso no dia a dia — um conjunto vivo, sempre em evolução.</p>
         </div>
 
-        <div class="row skills-content">
+        <!-- estilos da grade evolutiva de skills (escopado, não toca o style.css global) -->
+        <style>
+          .skillset { display: flex; flex-direction: column; gap: 28px; }
+          .skill-group .sg-head { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; }
+          .skill-group .sg-head .sg-dot { width: 9px; height: 9px; border-radius: 50%; background: #18d26e; box-shadow: 0 0 10px #18d26e; animation: sg-pulse 2.2s infinite; }
+          @keyframes sg-pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+          .skill-group .sg-head h4 { margin: 0; font-size: 16px; font-weight: 700; color: #050d18; }
+          .skill-group .sg-head .sg-meta { font-family: 'Courier New', monospace; font-size: 12px; color: #8a96a3; margin-left: auto; }
+          .chipset { display: flex; flex-wrap: wrap; gap: 10px; }
+          .skill-chip {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 14px; border-radius: 999px;
+            background: #fff; border: 1px solid #e4e8ec;
+            font-size: 14px; color: #45505b; font-weight: 500;
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+          }
+          .skill-chip:hover { transform: translateY(-2px); border-color: #18d26e; box-shadow: 0 6px 18px -8px rgba(24,210,110,.5); }
+          .skill-chip .lvl { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+          .skill-chip .lvl.solid { background: #18d26e; }            /* domínio */
+          .skill-chip .lvl.using { background: #4d8dff; }            /* uso no dia a dia */
+          .skill-chip .lvl.learning { background: #ffb454; box-shadow: 0 0 0 3px rgba(255,180,84,.18); }  /* descobrindo */
+          .skill-chip.learning { border-style: dashed; }
+          .skill-legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; font-size: 12.5px; color: #8a96a3; }
+          .skill-legend span { display: inline-flex; align-items: center; gap: 7px; }
+          .skill-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        </style>
 
-          <div class="col-lg-6" data-aos="fade-up">
+        <div class="skillset">
 
-            <div class="progress">
-              <span class="skill">HTML <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <div class="skill-group" data-aos="fade-up">
+            <div class="sg-head">
+              <span class="sg-dot"></span>
+              <h4>Tecnologias</h4>
+              <span class="sg-meta">// stack principal</span>
             </div>
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="chipset">
+              <span class="skill-chip"><i class="lvl solid"></i> Java</span>
+              <span class="skill-chip"><i class="lvl solid"></i> Spring</span>
+              <span class="skill-chip"><i class="lvl solid"></i> Angular</span>
+              <span class="skill-chip"><i class="lvl using"></i> Node.js</span>
+              <span class="skill-chip"><i class="lvl using"></i> TypeScript</span>
+              <span class="skill-chip"><i class="lvl using"></i> SQL / Oracle</span>
+              <span class="skill-chip"><i class="lvl using"></i> AWS</span>
+              <span class="skill-chip"><i class="lvl using"></i> Azure</span>
+              <span class="skill-chip learning"><i class="lvl learning"></i> Databricks</span>
             </div>
-
-            <div class="progress">
-              <span class="skill">JavaScript <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">AWS <i class="val">50%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">DevOps <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
           </div>
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="progress">
-              <span class="skill">Java <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <div class="skill-group" data-aos="fade-up" data-aos-delay="100">
+            <div class="sg-head">
+              <span class="sg-dot"></span>
+              <h4>Princípios de design</h4>
+              <span class="sg-meta">// como eu mantenho o código são</span>
             </div>
-
-            <div class="progress">
-              <span class="skill">Node <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="chipset">
+              <span class="skill-chip"><i class="lvl solid"></i> SOLID</span>
+              <span class="skill-chip"><i class="lvl solid"></i> DRY</span>
+              <span class="skill-chip"><i class="lvl solid"></i> KISS</span>
+              <span class="skill-chip"><i class="lvl solid"></i> YAGNI</span>
+              <span class="skill-chip"><i class="lvl using"></i> TDD</span>
+              <span class="skill-chip learning"><i class="lvl learning"></i> SDD (spec-driven)</span>
+              <span class="skill-chip"><i class="lvl using"></i> Clean Architecture</span>
             </div>
+          </div>
 
-            <div class="progress">
-              <span class="skill">WordPress/CMS <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+          <div class="skill-group" data-aos="fade-up" data-aos-delay="200">
+            <div class="sg-head">
+              <span class="sg-dot"></span>
+              <h4>Práticas &amp; IA</h4>
+              <span class="sg-meta">// o que acelera o time</span>
             </div>
-
-            <div class="progress">
-              <span class="skill">Angular <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
+            <div class="chipset">
+              <span class="skill-chip"><i class="lvl using"></i> Claude / Claude Code</span>
+              <span class="skill-chip"><i class="lvl using"></i> Code review</span>
+              <span class="skill-chip"><i class="lvl using"></i> Pair programming</span>
+              <span class="skill-chip"><i class="lvl using"></i> CI/CD</span>
+              <span class="skill-chip"><i class="lvl using"></i> DevOps</span>
+              <span class="skill-chip learning"><i class="lvl learning"></i> IA aplicada / agentes</span>
             </div>
+          </div>
 
-            <div class="progress">
-              <span class="skill">Banco de dados Oracle <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
+          <div class="skill-legend" data-aos="fade-up">
+            <span><i style="background:#18d26e"></i> domínio</span>
+            <span><i style="background:#4d8dff"></i> uso no dia a dia</span>
+            <span><i style="background:#ffb454"></i> descobrindo / em construção</span>
           </div>
 
         </div>
@@ -471,7 +479,7 @@
 
               <div class="text-center">
                 <i class="bx bxl-twitter"></i>
-                <a href="https://twitter.com/_Javeiro" class="twitter" target="_blank"> @_Javeiro</a>
+                <a href="https://x.com/ArchCodeAI" class="twitter" target="_blank"> @ArchCodeAI</a>
               </div></br>
 
               <div class="text-center">
@@ -487,8 +495,13 @@
               <div class="text-center">
                 <i class="bx bxl-linkedin"></i>
                 <a href="https://www.linkedin.com/in/jefferson-fabricio/" class="medium" target="_blank"> jefferson-fabricio</a>
+              </div></br>
+
+              <div class="text-center">
+                <i class="bx bx-package"></i>
+                <a href="https://www.npmjs.com/~jeffersonfabricio" class="medium" target="_blank"> jeffersonfabricio</a>
               </div>
-              
+
             </div>
 
           </div>
