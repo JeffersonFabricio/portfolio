@@ -13,6 +13,7 @@
     // ---- paleta por categoria (combina com o tema do template) ----
     var CAT = {
       tech:     { label: 'Tecnologias',          color: '#18d26e' },
+      cloud:    { label: 'Cloud',                color: '#ff8a3d' },
       arch:     { label: 'Arquitetura',          color: '#1bb3c4' },
       design:   { label: 'Princípios de design', color: '#4d8dff' },
       practice: { label: 'Práticas',             color: '#b98bff' },
@@ -23,6 +24,7 @@
     var nodes = [
       // categorias
       { id: 'tech', cat: 'tech', kind: 'cat' },
+      { id: 'cloud', cat: 'cloud', kind: 'cat' },
       { id: 'arch', cat: 'arch', kind: 'cat' },
       { id: 'design', cat: 'design', kind: 'cat' },
       { id: 'practice', cat: 'practice', kind: 'cat' },
@@ -31,9 +33,10 @@
       { id: 'Java', cat: 'tech' }, { id: 'Spring', cat: 'tech' },
       { id: 'Angular', cat: 'tech' }, { id: 'Flutter', cat: 'tech' },
       { id: 'Node', cat: 'tech' }, { id: 'TypeScript', cat: 'tech' },
-      { id: 'SQL', cat: 'tech' }, { id: 'AWS', cat: 'tech' },
-      { id: 'Azure', cat: 'tech' }, { id: 'Databricks', cat: 'tech' },
-      { id: 'Bedrock', cat: 'tech' },
+      { id: 'SQL', cat: 'tech' }, { id: 'Databricks', cat: 'tech' },
+      // cloud
+      { id: 'AWS', cat: 'cloud' }, { id: 'Azure', cat: 'cloud' },
+      { id: 'Bedrock', cat: 'cloud' },
       // arquitetura & padrões
       { id: 'Microserviços', cat: 'arch' }, { id: 'CQRS', cat: 'arch' },
       { id: 'Vertical Slice', cat: 'arch' }, { id: 'MVC', cat: 'arch' },
