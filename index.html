@@ -130,6 +130,10 @@
 
         <!-- estilos da grade evolutiva de skills (escopado, não toca o style.css global) -->
         <style>
+          .skill-graph-wrap { background: #fff; border: 1px solid #e4e8ec; border-radius: 14px; padding: 8px 12px 4px; margin-bottom: 30px; box-shadow: 0 10px 30px -18px rgba(5,13,24,.25); position: relative; }
+          .skill-graph-wrap .sgw-hint { position: absolute; top: 12px; right: 16px; font-family: 'Courier New', monospace; font-size: 11px; color: #aab4bd; pointer-events: none; }
+          #skill-graph { width: 100%; min-height: 440px; }
+          #skill-graph svg text { user-select: none; }
           .skillset { display: flex; flex-direction: column; gap: 28px; }
           .skill-group .sg-head { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; }
           .skill-group .sg-head .sg-dot { width: 9px; height: 9px; border-radius: 50%; background: #18d26e; box-shadow: 0 0 10px #18d26e; animation: sg-pulse 2.2s infinite; }
@@ -155,6 +159,12 @@
           .skill-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
         </style>
 
+        <!-- grafo de conhecimento (estilo Obsidian) -->
+        <div class="skill-graph-wrap" data-aos="fade-up">
+          <span class="sgw-hint">arraste os nós · passe o mouse para destacar</span>
+          <div id="skill-graph"></div>
+        </div>
+
         <div class="skillset">
 
           <div class="skill-group" data-aos="fade-up">
@@ -167,6 +177,7 @@
               <span class="skill-chip"><i class="lvl solid"></i> Java</span>
               <span class="skill-chip"><i class="lvl solid"></i> Spring</span>
               <span class="skill-chip"><i class="lvl solid"></i> Angular</span>
+              <span class="skill-chip"><i class="lvl solid"></i> Flutter</span>
               <span class="skill-chip"><i class="lvl using"></i> Node.js</span>
               <span class="skill-chip"><i class="lvl using"></i> TypeScript</span>
               <span class="skill-chip"><i class="lvl using"></i> SQL / Oracle</span>
@@ -534,6 +545,10 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <script src="assets/js/main.js"></script>
+
+  <!-- grafo de skills estilo Obsidian -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="assets/js/skill-graph.js"></script>
 
 </body>
 
