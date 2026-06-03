@@ -16,6 +16,8 @@
       cloud:    { label: 'Cloud',                color: '#ff8a3d' },
       arch:     { label: 'Arquitetura',          color: '#1bb3c4' },
       design:   { label: 'Princípios de design', color: '#4d8dff' },
+      testes:   { label: 'Testes',               color: '#2dd4bf' },
+      security: { label: 'Segurança',            color: '#f0556b' },
       practice: { label: 'Práticas',             color: '#b98bff' },
       ai:       { label: 'IA',                   color: '#ffb454' }
     };
@@ -27,6 +29,8 @@
       { id: 'cloud', cat: 'cloud', kind: 'cat' },
       { id: 'arch', cat: 'arch', kind: 'cat' },
       { id: 'design', cat: 'design', kind: 'cat' },
+      { id: 'testes', cat: 'testes', kind: 'cat' },
+      { id: 'security', cat: 'security', kind: 'cat' },
       { id: 'practice', cat: 'practice', kind: 'cat' },
       { id: 'ai', cat: 'ai', kind: 'cat' },
       // tecnologias
@@ -34,9 +38,11 @@
       { id: 'Angular', cat: 'tech' }, { id: 'Flutter', cat: 'tech' },
       { id: 'Node', cat: 'tech' }, { id: 'TypeScript', cat: 'tech' },
       { id: 'SQL', cat: 'tech' }, { id: 'Databricks', cat: 'tech' },
-      // cloud
+      // cloud & infra
       { id: 'AWS', cat: 'cloud' }, { id: 'Azure', cat: 'cloud' },
-      { id: 'Bedrock', cat: 'cloud' },
+      { id: 'Bedrock', cat: 'cloud' }, { id: 'ECS', cat: 'cloud' },
+      { id: 'Fargate', cat: 'cloud' }, { id: 'Docker', cat: 'cloud' },
+      { id: 'Terraform', cat: 'cloud' },
       // arquitetura & padrões
       { id: 'Microserviços', cat: 'arch' }, { id: 'CQRS', cat: 'arch' },
       { id: 'Vertical Slice', cat: 'arch' }, { id: 'MVC', cat: 'arch' },
@@ -45,6 +51,12 @@
       // princípios
       { id: 'SOLID', cat: 'design' }, { id: 'DRY', cat: 'design' },
       { id: 'KISS', cat: 'design' }, { id: 'YAGNI', cat: 'design' },
+      // testes
+      { id: 'Unitários', cat: 'testes' }, { id: 'Postman', cat: 'testes' },
+      { id: 'E2E', cat: 'testes' }, { id: 'Playwright', cat: 'testes' },
+      // segurança
+      { id: 'SAST', cat: 'security' }, { id: 'DAST', cat: 'security' },
+      { id: 'OWASP Top 10', cat: 'security' },
       // práticas
       { id: 'TDD', cat: 'practice' }, { id: 'SDD', cat: 'practice' },
       { id: 'CI/CD', cat: 'practice' }, { id: 'DevOps', cat: 'practice' },
@@ -52,7 +64,9 @@
       { id: 'Pair prog.', cat: 'practice' }, { id: 'Mentoria', cat: 'practice' },
       // IA
       { id: 'Claude', cat: 'ai' }, { id: 'Agentes', cat: 'ai' },
-      { id: 'RAG', cat: 'ai' }
+      { id: 'RAG', cat: 'ai' }, { id: 'MCP', cat: 'ai' },
+      { id: 'LLMs', cat: 'ai' }, { id: 'Multi Agentes', cat: 'ai' },
+      { id: 'Embeddings', cat: 'ai' }
     ];
 
     // ---- arestas: skill → sua categoria (cluster) ----
@@ -77,7 +91,21 @@
       ['Serverless', 'AWS'], ['Serverless', 'Azure'], ['Bedrock', 'AWS'],
       ['Bedrock', 'Agentes'], ['Microserviços', 'Spring'],
       ['Negócio', 'CQRS'], ['Negócio', 'Code review'],
-      ['Mentoria', 'Pair prog.'], ['Mentoria', 'Code review'], ['Pair prog.', 'TDD']
+      ['Mentoria', 'Pair prog.'], ['Mentoria', 'Code review'], ['Pair prog.', 'TDD'],
+      // cloud & infra
+      ['Docker', 'ECS'], ['ECS', 'Fargate'], ['Fargate', 'AWS'], ['ECS', 'AWS'],
+      ['Docker', 'DevOps'], ['Terraform', 'AWS'], ['Terraform', 'Azure'],
+      ['Terraform', 'DevOps'], ['Serverless', 'Fargate'],
+      // testes
+      ['Unitários', 'TDD'], ['Unitários', 'CI/CD'], ['E2E', 'Playwright'],
+      ['E2E', 'CI/CD'], ['Postman', 'Webhook'], ['Playwright', 'Angular'],
+      // segurança
+      ['SAST', 'CI/CD'], ['DAST', 'CI/CD'], ['SAST', 'OWASP Top 10'],
+      ['DAST', 'OWASP Top 10'], ['OWASP Top 10', 'Code review'], ['DAST', 'E2E'],
+      // IA
+      ['MCP', 'Claude'], ['MCP', 'Agentes'], ['Multi Agentes', 'Agentes'],
+      ['Embeddings', 'RAG'], ['LLMs', 'Claude'], ['LLMs', 'Bedrock'],
+      ['Multi Agentes', 'LLMs'], ['Embeddings', 'Databricks']
     ];
     rel.forEach(function (r) { links.push({ source: r[0], target: r[1], kind: 'rel' }); });
 
